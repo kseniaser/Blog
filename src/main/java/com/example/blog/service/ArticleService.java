@@ -27,6 +27,9 @@ public class ArticleService {
 
     @Transactional
     public void saveArticle(Article article){
+        if(article.getId() != null){
+            throw new IllegalArgumentException("Method cannot modify entity");
+        }
         articleJpaRepository.save(article);
     }
 
