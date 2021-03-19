@@ -1,6 +1,8 @@
 package com.example.blog.service;
 
 import com.example.blog.model.Article;
+import com.example.blog.model.request.ArticleCreationDto;
+import com.example.blog.model.request.ArticleUpdateDto;
 import com.example.blog.repository.ArticleJpaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -27,15 +29,12 @@ public class ArticleService {
     }
 
     @Transactional
-    public void saveArticle(Article article){
-        if(article.getId() != null){
-            throw new IllegalArgumentException("Method cannot modify entity");
-        }
-        articleJpaRepository.save(article);
+    public void saveArticle(ArticleCreationDto article){
+        articleJpaRepository.save(article.toArticle());
     }
 
     @Transactional
-    public void updateArticle(Article article){
+    public void updateArticle(ArticleUpdateDto article){
         Article oldArticle = articleJpaRepository.findById(article.getId()).orElseThrow();
         oldArticle.setContent(article.getContent());
         oldArticle.setDate(LocalDateTime.now());

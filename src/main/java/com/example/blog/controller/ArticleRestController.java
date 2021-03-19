@@ -1,6 +1,8 @@
 package com.example.blog.controller;
 
 import com.example.blog.model.Article;
+import com.example.blog.model.request.ArticleCreationDto;
+import com.example.blog.model.request.ArticleUpdateDto;
 import com.example.blog.service.ArticleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -18,8 +20,8 @@ public class ArticleRestController {
     }
 
     @PostMapping("/api/articles")
-    public void saveArticle(@RequestBody Article Article){
-        articleService.saveArticle(Article);
+    public void saveArticle(@RequestBody ArticleCreationDto article){
+        articleService.saveArticle(article);
     }
 
     @DeleteMapping("/api/articles/{articleId}")
@@ -28,7 +30,7 @@ public class ArticleRestController {
     }
 
     @PutMapping("/api/articles")
-    public void updateArticle(@RequestBody Article article){
+    public void updateArticle(@RequestBody ArticleUpdateDto article){
         articleService.updateArticle(article);
     }
 
