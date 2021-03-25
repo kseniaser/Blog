@@ -1,5 +1,6 @@
 package com.example.blog.model.request;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -7,5 +8,7 @@ import lombok.Setter;
 @Setter
 public class ArticleUpdateDto {
     private String id;
-    private String content;
+    private JsonNode content;
+    private String title;
+    private String description;
 }
